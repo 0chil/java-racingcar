@@ -5,13 +5,12 @@ public class Car {
     private String name;
 
     public Car() {
-        this.location = 0;
+        this("");
     }
 
     public Car(String carName) {
-        //TODO : work from smallest to largest
-        this();
-        this.name = carName;
+        this.setLocation(0);
+        this.setName(carName);
     }
 
     public void moveForward() {
