@@ -20,13 +20,9 @@ public class CarsController {
     }
 
     public void addCars(List<String> carNameList) {
-        for (String carName : carNameList) {
+        carNameList.forEach(carName -> {
             this.getCarList().add(new Car(carName));
-        }
-    }
-
-    public List<Car> getCarList() {
-        return this.carList;
+        });
     }
 
     public void moveCarsByRandomNumber(int fromInclusive, int toInclusive) {
@@ -34,5 +30,9 @@ public class CarsController {
             int randomizedNumber = RandomUtils.nextInt(fromInclusive, toInclusive);
             car.moveByNumber(randomizedNumber);
         });
+    }
+
+    public List<Car> getCarList() {
+        return this.carList;
     }
 }
