@@ -4,12 +4,17 @@ public class Car {
     private int location;
     private String name;
 
-    public Car(){
+    public Car() {
         this.location = 0;
     }
 
     public void moveForward() {
         this.setLocation(this.getLocation() + 1);
+    }
+
+    public void moveByNumber(int randomizedNumber) {
+        if (randomizedNumber >= 4)
+            this.moveForward();
     }
 
     public void setLocation(int location) {
