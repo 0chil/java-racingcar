@@ -1,24 +1,24 @@
 package racingcar.controller;
 
-import racingcar.domain.Cars;
+import racingcar.domain.Car;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarsController {
-    private final List<Cars> carsList;
+    private final List<Car> carList;
 
     public CarsController(){
-        this.carsList = new ArrayList<>();
+        this.carList = new ArrayList<>();
     }
 
     public void addCars(int carsCount) {
         for(int car=0;car<carsCount;car++) {
-            this.getCarsList().add(new Cars());
+            this.getCarList().add(new Car());
         }
     }
 
-    public List<Cars> getCarsList() {
-        return this.carsList;
+    public List<Car> getCarList() {
+        return this.carList;
     }
 }

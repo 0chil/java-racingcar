@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CarsControllerTest {
+public class CarControllerTest {
 
     @Test
     void 자동차_N대_생성(){
@@ -15,6 +15,6 @@ public class CarsControllerTest {
         carsController.addCars(5);
 
         // then
-        assertThat(carsController.getCarsList().size()).isEqualTo(5);
+        assertThat(carsController.getCarList().size()).isEqualTo(5);
     }
 }
