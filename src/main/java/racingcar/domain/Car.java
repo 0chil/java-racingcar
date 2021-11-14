@@ -8,6 +8,12 @@ public class Car {
         this.location = 0;
     }
 
+    public Car(String carName) {
+        //TODO : work from smallest to largest
+        this();
+        this.name = carName;
+    }
+
     public void moveForward() {
         this.setLocation(this.getLocation() + 1);
     }

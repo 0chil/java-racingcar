@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.*;
+
 public class CarTest {
 
     public static final String TEST_CAR_NAME = "자동차 이름 붙이기!";
@@ -25,7 +27,7 @@ public class CarTest {
         car.moveForward();
 
         // then
-        Assertions.assertThat(car.getLocation()).isEqualTo(3);
+        assertThat(car.getLocation()).isEqualTo(3);
     }
 
     @Test
@@ -34,7 +36,7 @@ public class CarTest {
         car.setName(TEST_CAR_NAME);
 
         // then
-        Assertions.assertThat(car.getName()).isEqualTo(TEST_CAR_NAME);
+        assertThat(car.getName()).isEqualTo(TEST_CAR_NAME);
     }
 
     @ParameterizedTest(name = "자동차_값_입력_{arguments}_멈춤")
@@ -45,7 +47,7 @@ public class CarTest {
         car.moveByNumber(randomizedNumber);
 
         // then
-        Assertions.assertThat(car.getLocation()).isEqualTo(previousLocation);
+        assertThat(car.getLocation()).isEqualTo(previousLocation);
     }
 
     @ParameterizedTest(name = "자동차_값_입력_{arguments}_전진")
@@ -56,6 +58,6 @@ public class CarTest {
         car.moveByNumber(randomizedNumber);
 
         // then
-        Assertions.assertThat(car.getLocation()).isGreaterThan(previousLocation);
+        assertThat(car.getLocation()).isGreaterThan(previousLocation);
     }
 }
