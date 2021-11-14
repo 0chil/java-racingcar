@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import racingcar.domain.Car;
+import utils.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class CarsController {
     }
 
     public void addCars(List<String> carNameList) {
-        for(String carName : carNameList){
+        for (String carName : carNameList) {
             this.getCarList().add(new Car(carName));
         }
     }
@@ -28,4 +29,10 @@ public class CarsController {
         return this.carList;
     }
 
+    public void moveCarsByRandomNumber(int fromInclusive, int toInclusive) {
+        carList.forEach(car -> {
+            int randomizedNumber = RandomUtils.nextInt(fromInclusive, toInclusive);
+            car.moveByNumber(randomizedNumber);
+        });
+    }
 }
