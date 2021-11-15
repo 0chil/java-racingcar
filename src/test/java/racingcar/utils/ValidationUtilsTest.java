@@ -4,8 +4,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import racingcar.exception.CarNameException;
 
-import java.security.InvalidParameterException;
-
 public class ValidationUtilsTest {
 
     @Test
@@ -28,7 +26,7 @@ public class ValidationUtilsTest {
     void 사용자_입력_이동횟수_음수() {
         // given, when, then
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            ValidationUtils.validateUserInputNumber(-1);
+            ValidationUtils.validateUserInputNumberRange("-1");
         });
     }
 
@@ -36,7 +34,25 @@ public class ValidationUtilsTest {
     void 사용자_입력_이동횟수_0() {
         // given, when, then
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            ValidationUtils.validateUserInputNumber(0);
+            ValidationUtils.validateUserInputNumberRange("0");
         });
     }
+
+    @Test
+    void 사용자_입력_이동횟수_문자() {
+        // given, when, then
+        Assertions.assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
+            ValidationUtils.validateUserInputNumberFormat("a");
+        });
+    }
+
+    @Test
+    void 사용자_입력_이동횟수_문자열() {
+        // given, when, then
+        Assertions.assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
+            ValidationUtils.validateUserInputNumberFormat("ㅁㄴㅇㄹ");
+        });
+    }
+
+
 }

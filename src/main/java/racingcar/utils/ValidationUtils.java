@@ -14,8 +14,17 @@ public class ValidationUtils {
         throw new CarNameException(CAR_LENGTH_ERROR_MSG);
     }
 
-    public static void validateUserInputNumber(int userInput) {
-        if (0 < userInput) {
+    public static void validateUserInputNumberFormat(String userInput){
+        try{
+            Integer.parseInt(userInput);
+        }
+        catch (NumberFormatException e){
+            throw new IllegalArgumentException(USER_INPUT_NUMBER_ERROR_MSG);
+        }
+    }
+
+    public static void validateUserInputNumberRange(String userInput) {
+        if (0 < Integer.parseInt(userInput)) {
             return;
         }
         throw new IllegalArgumentException(USER_INPUT_NUMBER_ERROR_MSG);

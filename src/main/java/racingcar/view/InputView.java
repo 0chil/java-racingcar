@@ -1,9 +1,7 @@
 package racingcar.view;
 
-import racingcar.domain.Car;
 import racingcar.utils.ValidationUtils;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -21,8 +19,9 @@ public class InputView {
 
 
     public static int getUserIterateNumberInput(final Scanner scanner) {
-        int userInputIterateNumber = scanner.nextInt();
-        ValidationUtils.validateUserInputNumber(userInputIterateNumber);
-        return userInputIterateNumber;
+        String userInputIterateNumber = scanner.next();
+        ValidationUtils.validateUserInputNumberFormat(userInputIterateNumber);
+        ValidationUtils.validateUserInputNumberRange(userInputIterateNumber);
+        return Integer.parseInt(userInputIterateNumber);
     }
 }
