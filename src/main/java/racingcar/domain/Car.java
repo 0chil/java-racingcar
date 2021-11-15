@@ -26,11 +26,15 @@ public class Car {
 
     @Override
     public String toString() {
+        return this.getName() + " : " + getLocationString();
+    }
+
+    private String getLocationString() {
         String locationString = "";
         for (int i = 0; i < this.getLocation(); i++) {
             locationString += '-';
         }
-        return this.getName() + " : " + locationString;
+        return locationString;
     }
 
     public void setLocation(int location) {

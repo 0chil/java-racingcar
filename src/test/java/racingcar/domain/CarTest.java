@@ -69,5 +69,11 @@ public class CarTest {
 
         // then
         assertThat(car.toString()).isEqualTo("자1동차! : ----");
+
+        // when
+        car.setLocation(0);
+
+        // then
+        assertThat(car.toString()).isEqualTo("자1동차! : ");
     }
 }
