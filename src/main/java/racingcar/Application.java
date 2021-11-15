@@ -1,7 +1,7 @@
 package racingcar;
 
 import racingcar.controller.GameController;
-import racingcar.domain.Car;
+import racingcar.exception.CarNameException;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -14,10 +14,9 @@ public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         gameController = new GameController();
-        OutputView.printCarNameRequest();
-        inputCars(scanner);
-        OutputView.printIterateNumberRequest();
-        inputIterateNumber(scanner);
+
+        while(!inputCars(scanner));
+        while(!inputIterateNumber(scanner));
 
         gameController.runGame();
 
@@ -25,21 +24,38 @@ public class Application {
         printWinner();
     }
 
-    public static void inputCars(final Scanner scanner){
-        List<String> carNameList = InputView.getUserCarNameInput(scanner);
+    public static boolean inputCars(final Scanner scanner) {
+        List<String> carNameList;
+        OutputView.printCarNameRequest();
+        try {
+            carNameList = InputView.getUserCarNameInput(scanner);
+        } catch (CarNameException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
         gameController.addCars(carNameList);
+        return true;
     }
 
-    public static void inputIterateNumber(final Scanner scanner){
-        int iterateNumber = InputView.getUserIterateNumberInput(scanner);
+    public static boolean inputIterateNumber(final Scanner scanner) {
+        int iterateNumber;
+        OutputView.printIterateNumberRequest();
+        try {
+            iterateNumber = InputView.getUserIterateNumberInput(scanner);
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return false;
+        }
         gameController.setIterateNumber(iterateNumber);
+        return true;
     }
 
-    public static void printGameResult(){
+    public static void printGameResult() {
         OutputView.printGameResultString(gameController.toString());
     }
 
-    public static void printWinner(){
+    public static void printWinner() {
         OutputView.printWinner(gameController.getWinnerCarList());
     }
 }
