@@ -15,4 +15,8 @@ public class OutputView {
         printString.append("가 최종 우승했습니다.");
         System.out.println(printString);
     }
+
+    public static void printGameResultString(String gameResultString) {
+        System.out.println("실행 결과\n" + gameResultString);
+    }
 }

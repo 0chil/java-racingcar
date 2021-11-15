@@ -33,11 +33,14 @@ public class GameController {
         });
     }
 
-    public void runGame() {
+    public String runGame() {
+        StringBuilder resultString = new StringBuilder();
         while (getIterateNumber() > 0) {
             moveCarsByRandomNumber(0, 9);
+            resultString.append(this);
             decreaseIterateNumber();
         }
+        return resultString.toString();
     }
 
     private void decreaseIterateNumber() {
@@ -58,6 +61,16 @@ public class GameController {
             farthestLocation = Math.max(farthestLocation, car.getLocation());
         }
         return farthestLocation;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder carStatusString = new StringBuilder();
+        for (Car car : getGame().getCarList()) {
+            carStatusString.append(car).append("\n");
+        }
+        carStatusString.append("\n");
+        return carStatusString.toString();
     }
 
     public Game getGame() {
