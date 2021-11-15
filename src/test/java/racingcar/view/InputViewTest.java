@@ -1,7 +1,6 @@
 package racingcar.view;
 
 import org.junit.jupiter.api.Test;
-import racingcar.domain.Car;
 
 import java.util.List;
 import java.util.Scanner;
@@ -25,7 +24,7 @@ public class InputViewTest {
     }
 
     @Test
-    void 사용자_이동횟수_입력(){
+    void 사용자_이동횟수_입력() {
         // given
         final Scanner scanner = new Scanner("3\n");
 

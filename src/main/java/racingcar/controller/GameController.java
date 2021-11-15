@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameController {
+    public static final int RANDOM_FROM_INCLUSIVE_NUMBER = 0;
+    public static final int RANDOM_TO_INCLUSIVE_NUMBER = 9;
+    public static final String NEW_LINE_CHARACTER = "\n";
     private Game game;
     private int iterateNumber;
 
@@ -35,7 +38,7 @@ public class GameController {
     public String runGame() {
         StringBuilder resultString = new StringBuilder();
         while (getIterateNumber() > 0) {
-            moveCarsByRandomNumber(0, 9);
+            moveCarsByRandomNumber(RANDOM_FROM_INCLUSIVE_NUMBER, RANDOM_TO_INCLUSIVE_NUMBER);
             resultString.append(this);
             decreaseIterateNumber();
         }
@@ -66,9 +69,9 @@ public class GameController {
     public String toString() {
         StringBuilder carStatusString = new StringBuilder();
         for (Car car : getGame().getCarList()) {
-            carStatusString.append(car).append("\n");
+            carStatusString.append(car).append(NEW_LINE_CHARACTER);
         }
-        carStatusString.append("\n");
+        carStatusString.append(NEW_LINE_CHARACTER);
         return carStatusString.toString();
     }
 
@@ -76,7 +79,7 @@ public class GameController {
         return game;
     }
 
-    public void setGame(Game game) {
+    private void setGame(Game game) {
         this.game = game;
     }
 

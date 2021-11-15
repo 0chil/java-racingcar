@@ -12,10 +12,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameControllerTest {
     private GameController gameController;
+    private List<String> carNameList;
+
 
     @BeforeEach
     void setUp() {
         this.gameController = new GameController();
+        carNameList = Arrays.asList("자1동차", "자2동차", "자3동차", "자4동차", "자5동차");
     }
 
     @Test
@@ -29,10 +32,7 @@ public class GameControllerTest {
 
     @Test
     void 자동차_이름으로_생성() {
-        // given
-        List<String> carNameList = Arrays.asList("자1동차", "자2동차");
-
-        // when
+        // given, when
         gameController.addCars(carNameList);
 
         // then
@@ -44,7 +44,6 @@ public class GameControllerTest {
     @Test
     void 모든_자동차_랜덤값으로_전진() {
         // given
-        List<String> carNameList = Arrays.asList("자1동차", "자2동차", "자3동차", "자4동차", "자5동차");
         gameController.addCars(carNameList);
         int lastCarIndex = gameController.getGame().getCarList().size() - 1;
         int[] previousLocation = {gameController.getGame().getCarList().get(0).getLocation(), gameController.getGame().getCarList().get(lastCarIndex).getLocation()};
@@ -60,7 +59,6 @@ public class GameControllerTest {
     @Test
     void 모든_자동차_랜덤값으로_정지() {
         // given
-        List<String> carNameList = Arrays.asList("자1동차", "자2동차", "자3동차", "자4동차", "자5동차");
         gameController.addCars(carNameList);
         int lastCarIndex = gameController.getGame().getCarList().size() - 1;
         int[] previousLocation = {gameController.getGame().getCarList().get(0).getLocation(), gameController.getGame().getCarList().get(lastCarIndex).getLocation()};
@@ -83,9 +81,8 @@ public class GameControllerTest {
     }
 
     @Test
-    void 지정된_이동횟수만큼_게임실행(){
+    void 지정된_이동횟수만큼_게임실행() {
         // given, when
-        List<String> carNameList = Arrays.asList("자1동차", "자2동차", "자3동차", "자4동차", "자5동차");
         gameController.addCars(carNameList);
         gameController.setIterateNumber(5);
         gameController.runGame();
@@ -95,17 +92,18 @@ public class GameControllerTest {
     }
 
     @Test
-    void 우승자_판정(){
+    void 우승자_판정() {
         // given
-        List<String> carNameList = Arrays.asList("자1동차", "자2동차", "자3동차", "자4동차", "자5동차");
         gameController.addCars(carNameList);
         gameController.setIterateNumber(5);
         gameController.runGame();
+        gameController.getGame().getCarList().get(0).setLocation(1000);
 
         // when
         List<Car> winnerList = gameController.getWinnerCarList();
 
         // then
         assertThat(winnerList.size()).isNotZero();
+        assertThat(winnerList.get(0).getName()).isEqualTo(carNameList.get(0));
     }
 }

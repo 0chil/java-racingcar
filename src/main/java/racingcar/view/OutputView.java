@@ -26,11 +26,11 @@ public class OutputView {
         System.out.print(GAME_RESULT_PREFIX_MSG + gameResultString);
     }
 
-    public static void printCarNameRequest(){
+    public static void printCarNameRequest() {
         System.out.println(CAR_NAME_REQUEST_MSG);
     }
 
-    public static void printIterateNumberRequest(){
+    public static void printIterateNumberRequest() {
         System.out.println(ITERATE_NUMBER_REQUEST_MSG);
     }
 }

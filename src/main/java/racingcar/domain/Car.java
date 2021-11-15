@@ -1,8 +1,8 @@
 package racingcar.domain;
 
-import java.util.stream.IntStream;
-
 public class Car {
+    public static final String STATUS_INFIX_STRING = " : ";
+    public static final char LOCATION_EXPRESSION_CHARACTER = '-';
     private int location;
     private String name;
 
@@ -26,15 +26,15 @@ public class Car {
 
     @Override
     public String toString() {
-        return this.getName() + " : " + getLocationString();
+        return this.getName() + STATUS_INFIX_STRING + getLocationString();
     }
 
     private String getLocationString() {
-        String locationString = "";
+        StringBuilder locationString = new StringBuilder();
         for (int i = 0; i < this.getLocation(); i++) {
-            locationString += '-';
+            locationString.append(LOCATION_EXPRESSION_CHARACTER);
         }
-        return locationString;
+        return locationString.toString();
     }
 
     public void setLocation(int location) {

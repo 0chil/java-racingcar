@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.controller.GameController;
 import racingcar.domain.Car;
@@ -13,14 +14,17 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class OutputViewTest {
+    private GameController gameController;
+
+    @BeforeEach
+    void setUp() {
+        gameController = new GameController();
+    }
 
     @Test
-    void 우승자_출력_1명(){
+    void 우승자_출력_1명() {
         // given
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream printStream = new PrintStream(outputStream);
-        System.setOut(printStream);
-        GameController gameController = new GameController();
+        ByteArrayOutputStream outputStream = getOutputStream();
         gameController.addCars(Collections.singletonList("자1동차!"));
 
         List<Car> winnerCarList = gameController.getWinnerCarList();
@@ -33,13 +37,10 @@ public class OutputViewTest {
     }
 
     @Test
-    void 우승자_출력_2명이상(){
+    void 우승자_출력_2명이상() {
         // given
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream printStream = new PrintStream(outputStream);
-        System.setOut(printStream);
-        GameController gameController = new GameController();
-        gameController.addCars(Arrays.asList("자1동차!","자2동차!"));
+        ByteArrayOutputStream outputStream = getOutputStream();
+        gameController.addCars(Arrays.asList("자1동차!", "자2동차!"));
         List<Car> winnerCarList = gameController.getWinnerCarList();
 
         // when
@@ -50,13 +51,10 @@ public class OutputViewTest {
     }
 
     @Test
-    void 게임_실행결과_출력(){
+    void 게임_실행결과_출력() {
         // given
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream printStream = new PrintStream(outputStream);
-        System.setOut(printStream);
-        GameController gameController = new GameController();
-        gameController.addCars(Arrays.asList("자1동차!","자2동차!"));
+        ByteArrayOutputStream outputStream = getOutputStream();
+        gameController.addCars(Arrays.asList("자1동차!", "자2동차!"));
         gameController.setIterateNumber(10);
         String gameResultString = gameController.runGame();
 
@@ -68,5 +66,12 @@ public class OutputViewTest {
         assertThat(outputStream.toString()).contains("실행 결과");
         assertThat(outputStream.toString()).contains("자1동차! : ");
         assertThat(outputStream.toString()).contains("자2동차! : ");
+    }
+
+    private ByteArrayOutputStream getOutputStream(){
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        return outputStream;
     }
 }

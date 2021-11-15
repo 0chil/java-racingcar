@@ -15,8 +15,8 @@ public class Application {
         final Scanner scanner = new Scanner(System.in);
         gameController = new GameController();
 
-        while(!inputCars(scanner));
-        while(!inputIterateNumber(scanner));
+        while (!inputCars(scanner)) ;
+        while (!inputIterateNumber(scanner)) ;
 
         String gameResultString = gameController.runGame();
 
@@ -42,8 +42,7 @@ public class Application {
         OutputView.printIterateNumberRequest();
         try {
             iterateNumber = InputView.getUserIterateNumberInput(scanner);
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return false;
         }
