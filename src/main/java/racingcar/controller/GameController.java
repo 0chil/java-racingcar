@@ -31,6 +31,17 @@ public class GameController {
         });
     }
 
+    public void runGame() {
+        while(getIterateNumber() > 0){
+            moveCarsByRandomNumber(0,9);
+            decreaseIterateNumber();
+        }
+    }
+
+    private void decreaseIterateNumber() {
+        this.setIterateNumber(getIterateNumber() - 1);
+    }
+
     public Game getGame() {
         return game;
     }
@@ -46,5 +57,4 @@ public class GameController {
     public int getIterateNumber() {
         return iterateNumber;
     }
-
 }

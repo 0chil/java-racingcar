@@ -81,4 +81,13 @@ public class GameControllerTest {
         // then
         Assertions.assertThat(gameController.getIterateNumber()).isEqualTo(9);
     }
+
+    @Test
+    void 지정된_이동횟수만큼_게임실행(){
+        // given, when
+        gameController.setIterateNumber(5);
+        gameController.runGame();
+
+        assertThat(gameController.getIterateNumber()).isEqualTo(0);
+    }
 }
