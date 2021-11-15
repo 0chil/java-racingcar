@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Game;
 
@@ -10,13 +11,16 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameControllerTest {
+    private GameController gameController;
+
+    @BeforeEach
+    void setUp() {
+        this.gameController = new GameController();
+    }
 
     @Test
     void 자동차_N대_생성() {
-        // given
-        GameController gameController = new GameController();
-
-        // when
+        // given, when
         gameController.addCars(5);
 
         // then
@@ -26,7 +30,6 @@ public class GameControllerTest {
     @Test
     void 자동차_이름으로_생성() {
         // given
-        GameController gameController = new GameController();
         List<String> carNameList = Arrays.asList("자1동차", "자2동차");
 
         // when
@@ -41,7 +44,6 @@ public class GameControllerTest {
     @Test
     void 모든_자동차_랜덤값으로_전진() {
         // given
-        GameController gameController = new GameController();
         List<String> carNameList = Arrays.asList("자1동차", "자2동차", "자3동차", "자4동차", "자5동차");
         gameController.addCars(carNameList);
         int lastCarIndex = gameController.getGame().getCarList().size() - 1;
@@ -58,7 +60,6 @@ public class GameControllerTest {
     @Test
     void 모든_자동차_랜덤값으로_정지() {
         // given
-        GameController gameController = new GameController();
         List<String> carNameList = Arrays.asList("자1동차", "자2동차", "자3동차", "자4동차", "자5동차");
         gameController.addCars(carNameList);
         int lastCarIndex = gameController.getGame().getCarList().size() - 1;
@@ -74,10 +75,7 @@ public class GameControllerTest {
 
     @Test
     void 게임_횟수_지정() {
-        // given
-        GameController gameController = new GameController();
-
-        // when
+        // given, when
         gameController.setIterateNumber(9);
 
         // then
