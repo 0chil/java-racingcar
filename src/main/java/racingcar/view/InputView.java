@@ -9,15 +9,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    public static List<Car> getUserCarNameInput(final Scanner scanner) {
-        List<Car> carList = new ArrayList<>();
+
+    public static final String CAR_NAME_INPUT_DELIMITER = ",";
+
+    public static List<String> getUserCarNameInput(final Scanner scanner) {
         String userCarNameInput = scanner.next();
-        List<String> carNameList = Arrays.asList(userCarNameInput.split(","));
-        carNameList.forEach(carName -> {
-            ValidationUtils.validateCarNameLength(carName);
-            carList.add(new Car(carName));
-        });
-        return carList;
+        List<String> carNameList = Arrays.asList(userCarNameInput.split(CAR_NAME_INPUT_DELIMITER));
+        carNameList.forEach(ValidationUtils::validateCarNameLength);
+        return carNameList;
     }
 
 

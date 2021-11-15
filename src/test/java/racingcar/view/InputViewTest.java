@@ -16,12 +16,12 @@ public class InputViewTest {
         final Scanner scanner = new Scanner("자1동차,자2동차,자3동차\n");
 
         // when
-        List<Car> carList = InputView.getUserCarNameInput(scanner);
+        List<String> carList = InputView.getUserCarNameInput(scanner);
 
         //then
         assertThat(carList.size()).isEqualTo(3);
-        assertThat(carList.get(0).getName()).isEqualTo("자1동차");
-        assertThat(carList.get(2).getName()).isEqualTo("자3동차");
+        assertThat(carList.get(0)).isEqualTo("자1동차");
+        assertThat(carList.get(2)).isEqualTo("자3동차");
     }
 
     @Test
