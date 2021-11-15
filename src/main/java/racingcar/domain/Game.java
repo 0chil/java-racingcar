@@ -1,13 +1,19 @@
 package racingcar.domain;
 
-public class Game {
-    private int iterateNumber;
+import racingcar.domain.Car;
+import utils.RandomUtils;
 
-    public void setIterateNumber(int iterateNumber) {
-        this.iterateNumber = iterateNumber;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Game {
+    private final List<Car> carList;
+
+    public Game() {
+        this.carList = new ArrayList<>();
     }
 
-    public int getIterateNumber() {
-        return iterateNumber;
+    public List<Car> getCarList() {
+        return this.carList;
     }
 }
