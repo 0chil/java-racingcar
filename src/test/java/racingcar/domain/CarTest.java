@@ -60,4 +60,14 @@ public class CarTest {
         // then
         assertThat(car.getLocation()).isGreaterThan(previousLocation);
     }
+
+    @Test
+    void 자동차_문자열_표현(){
+        // given, when
+        car.setName("자1동차!");
+        car.setLocation(4);
+
+        // then
+        assertThat(car.toString()).isEqualTo("자1동차! : ----");
+    }
 }

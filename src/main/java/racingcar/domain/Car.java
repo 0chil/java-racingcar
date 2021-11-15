@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.stream.IntStream;
+
 public class Car {
     private int location;
     private String name;
@@ -20,6 +22,15 @@ public class Car {
     public void moveByNumber(int randomizedNumber) {
         if (randomizedNumber >= 4)
             this.moveForward();
+    }
+
+    @Override
+    public String toString() {
+        String locationString = "";
+        for (int i = 0; i < this.getLocation(); i++) {
+            locationString += '-';
+        }
+        return this.getName() + " : " + locationString;
     }
 
     public void setLocation(int location) {
