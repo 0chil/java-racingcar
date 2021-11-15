@@ -4,7 +4,9 @@ import racingcar.domain.Car;
 import racingcar.domain.Game;
 import utils.RandomUtils;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameController {
     private Game game;
@@ -32,14 +34,30 @@ public class GameController {
     }
 
     public void runGame() {
-        while(getIterateNumber() > 0){
-            moveCarsByRandomNumber(0,9);
+        while (getIterateNumber() > 0) {
+            moveCarsByRandomNumber(0, 9);
             decreaseIterateNumber();
         }
     }
 
     private void decreaseIterateNumber() {
         this.setIterateNumber(getIterateNumber() - 1);
+    }
+
+    public List<Car> getWinnerCarList() {
+        int farthestLocation = getFarthestLocation();
+        return getGame().getCarList()
+            .stream()
+            .filter(car -> car.getLocation() >= farthestLocation)
+            .collect(Collectors.toList());
+    }
+
+    private int getFarthestLocation() {
+        int farthestLocation = 0;
+        for (Car car : getGame().getCarList()) {
+            farthestLocation = Math.max(farthestLocation, car.getLocation());
+        }
+        return farthestLocation;
     }
 
     public Game getGame() {
