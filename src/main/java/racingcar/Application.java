@@ -18,9 +18,9 @@ public class Application {
         while(!inputCars(scanner));
         while(!inputIterateNumber(scanner));
 
-        gameController.runGame();
+        String gameResultString = gameController.runGame();
 
-        printGameResult();
+        printGameResult(gameResultString);
         printWinner();
     }
 
@@ -51,8 +51,8 @@ public class Application {
         return true;
     }
 
-    public static void printGameResult() {
-        OutputView.printGameResultString(gameController.toString());
+    public static void printGameResult(String resultString) {
+        OutputView.printGameResultString(resultString);
     }
 
     public static void printWinner() {

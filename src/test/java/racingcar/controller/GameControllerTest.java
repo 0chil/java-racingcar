@@ -4,7 +4,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
-import racingcar.domain.Game;
 
 import java.util.Arrays;
 import java.util.List;
@@ -97,14 +96,16 @@ public class GameControllerTest {
 
     @Test
     void 우승자_판정(){
-        // given, when
+        // given
         List<String> carNameList = Arrays.asList("자1동차", "자2동차", "자3동차", "자4동차", "자5동차");
         gameController.addCars(carNameList);
         gameController.setIterateNumber(5);
         gameController.runGame();
 
+        // when
         List<Car> winnerList = gameController.getWinnerCarList();
 
+        // then
         assertThat(winnerList.size()).isNotZero();
     }
 }

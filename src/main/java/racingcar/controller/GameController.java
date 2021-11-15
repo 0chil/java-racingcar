@@ -4,7 +4,6 @@ import racingcar.domain.Car;
 import racingcar.domain.Game;
 import utils.RandomUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
